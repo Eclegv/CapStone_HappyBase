@@ -26,7 +26,7 @@ while True:
 
     start_time = time.time()
 
-    outPutReq = DB.requestDB(S="", P="", O="", C="", maxNumberResults=1000, rowKeyStart=startKey)
+    outPutReq = DB.requestDB(S="", P="", O="", C="", maxNumberResults=10, rowKeyStart=startKey)
     startKey = outPutReq["Starting_RowKey"]
     totalElements += outPutReq["Results_Count"]
 
@@ -45,8 +45,10 @@ while True:
         previousKey = startKey
 
 print("---- Benchmark results ----")
-print(
-    f"Total time : {totalTime} seconds\nAverage time by request : {totalTime / nbrReq}\nNumber of requests : {nbrReq}\nNumber of elements : {totalElements}")
+print(f"Total time : {totalTime} seconds\n ")
+print(f"Average time by request : {totalTime / nbrReq}\n")
+print(f"Number of requests : {nbrReq}\n")
+print(f"Number of elements : {totalElements}")
 
 plt.plot(requestsNumbers, requestsTime)
 plt.xlabel('Request Number')
